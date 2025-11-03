@@ -74,30 +74,30 @@ public class ClientHandler implements Runnable {
                 if (inputMessage.equalsIgnoreCase("/help")) {
                     showHelp();
 
-                } else if (inputMessage.startsWith("/change-name ")) {
+                } else if (inputMessage.startsWith("/change-userName ")) {
                     String[] parts = inputMessage.split(" ", 2);
                     if (parts.length == 2 && !parts[1].isEmpty()) {
                         ChangeUserName(parts[1]);
                     } else {
-                        out.println("Uso: /change-name [Nombre]");
+                        out.println("Uso: /change-userName [Nombre]");
                         out.flush();
                     }
 
-                } else if (inputMessage.startsWith("/msg ")) {
+                } else if (inputMessage.startsWith("/send-msg ")) {
                     String[] parts = inputMessage.split(" ", 3);
                     if (parts.length == 3 && !parts[1].isEmpty() && !parts[2].isEmpty()) {
                         privateMessage(parts[1], parts[2]);
                     } else {
-                        out.println("Uso: /msg [usuario] [mensaje]");
+                        out.println("Uso: /send-msg [usuario] [mensaje]");
                         out.flush();
                     }
 
-                } else if (inputMessage.startsWith("/g")) {
+                } else if (inputMessage.startsWith("/global-msg")) {
                     String[] parts = inputMessage.split(" ", 2);
                     if (parts.length == 2 && !parts[1].isEmpty()) {
                         globalMessage(parts[1]);
                     } else {
-                        out.println("Uso: /g [mensaje]");
+                        out.println("Uso: /global-msg [mensaje]");
                         out.flush();
                     }
 
@@ -136,9 +136,9 @@ public class ClientHandler implements Runnable {
     // Mostrar comandos
     private void showHelp() {
         out.println("--- Lista de Comandos ---");
-        out.println(" * /g [mensaje]: Envia un mensaje global.");
-        out.println(" * /msg [usuario] [mensaje]: Envia un mensaje privado.");
-        out.println(" * /change-name [nuevoNombre]: Cambia tu nombre.");
+        out.println(" * /global-msg [mensaje]: Envia un mensaje global.");
+        out.println(" * /send-msg [usuario] [mensaje]: Envia un mensaje privado.");
+        out.println(" * /change-userName [nuevoNombre]: Cambia tu nombre.");
         out.println(" * /reconnect: Vuelve a la pantalla de conexión.");
         out.println(" * /exit: Cierra el cliente.");
         out.println("-------------------------");
